@@ -7,9 +7,7 @@ af = a.flatten
 af.each do |i|
   FileUtils.touch("#{i}.java")
   File.open "#{i}.java",'w' do |r|
-    r.write "public class #{i}{
-
-}"
+    r.write "public class #{i}{}"
   end
 end
 
