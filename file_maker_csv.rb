@@ -1,13 +1,13 @@
 Encoding.default_external = Encoding::UTF_8
 require 'csv'
 require 'fileutils'
+require 'date'
 
-a = CSV.readlines("java_list.csv")
-af = a.flatten
-af.each do |i|
-  FileUtils.touch("#{i}.java")    #ファイルを作成する
-  File.open "#{i}.java",'w' do |r|#作成したファイルを書き込みモードで開く
-    r.write "public class #{i}{}" #中身に必要な物を書く
+filelist = CSV.readlines("filelist.csv").flatten
+filelist.each do |i|
+  #FileUtils.touch("#{i}")    #ファイルを作成する、↓の奴で無い時は作ってくれるからいらなかった
+  File.open "#{i}",'w' do |r|#作成したファイルを書き込みモードで開く
+    r.write "#Created on #{Date.today}" #中身に必要な物を書く
   end
 end
 
@@ -28,6 +28,12 @@ end
 java用だからコメントアウトの奴変えておかないとな
 コメントアウトじゃなくて、public class～にした。
 こうすれば後はメソッド部分だけコピーすれば良い、やったぜ！
+=end
+
+=begin
+javaのファイルを作る時、中身も書きたい時は以下に変更
+  File.open "#{i}.java",'w' do |r|#作成したファイルを書き込みモードで開く
+    r.write "public class #{i}{}" #中身に必要な物を書く
 =end
 
 =begin
