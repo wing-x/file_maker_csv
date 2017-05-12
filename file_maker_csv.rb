@@ -5,9 +5,9 @@ require 'fileutils'
 a = CSV.readlines("java_list.csv")
 af = a.flatten
 af.each do |i|
-  FileUtils.touch("#{i}.java")
-  File.open "#{i}.java",'w' do |r|
-    r.write "public class #{i}{}"
+  FileUtils.touch("#{i}.java")    #ファイルを作成する
+  File.open "#{i}.java",'w' do |r|#作成したファイルを書き込みモードで開く
+    r.write "public class #{i}{}" #中身に必要な物を書く
   end
 end
 
